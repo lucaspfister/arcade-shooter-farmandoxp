@@ -10,6 +10,7 @@ public class CannonBall : MonoBehaviour
     private Rigidbody Rigidbody;
     private Action<CannonBall> Callback;
     private bool IsShooting = false;
+    private bool IsValid = false;
     private float CurrentDuration;
 
     private void Awake()
@@ -25,6 +26,7 @@ public class CannonBall : MonoBehaviour
         Rigidbody.AddForce(force, ForceMode.Impulse);
         CurrentDuration = 0;
         IsShooting = true;
+        IsValid = true;
     }
 
     private void Update()
@@ -37,6 +39,19 @@ public class CannonBall : MonoBehaviour
         {
             IsShooting = false;
             Callback?.Invoke(this);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!IsValid) return;
+
+        IsValid = false;
+
+        if (collision.collider.tag == "Target")
+        {
+            Target target = collision.collider.GetComponent<Target>();
+            target.Hit();
         }
     }
 }

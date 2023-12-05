@@ -8,8 +8,11 @@ public class CannonController : MonoBehaviour
     [SerializeField] private Transform ShotOrigin;
     [SerializeField] private float RotationSpeed;
     [SerializeField] private float ShootForce;
+    [SerializeField] private float CooldownDuration;
 
     private Pool<CannonBall> Pool;
+    private bool IsCoolingDown;
+    private float Cooldown;
 
     private const int POOL_INITIAL_SIZE = 10;
 
@@ -22,6 +25,16 @@ public class CannonController : MonoBehaviour
     private void Update()
     {
         Rotate();
+
+        if (IsCoolingDown)
+        {
+            Cooldown -= Time.deltaTime;
+
+            if (Cooldown <= 0)
+            {
+                IsCoolingDown = false;
+            }
+        }
     }
 
     private void Rotate()
@@ -34,9 +47,14 @@ public class CannonController : MonoBehaviour
 
     private void OnShoot()
     {
+        if (IsCoolingDown) return;
+
         CannonBall cannonBall = Pool.Rent();
         cannonBall.transform.SetPositionAndRotation(ShotOrigin.position, Quaternion.identity);
         cannonBall.Shoot(ShootForce * ShotOrigin.forward, CannonBallCallback);
+
+        IsCoolingDown = true;
+        Cooldown = CooldownDuration;
     }
 
     private void CannonBallCallback(CannonBall cannonBall)
