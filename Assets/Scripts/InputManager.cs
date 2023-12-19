@@ -15,8 +15,17 @@ public class InputManager
     public InputManager()
     {
         Controls = new Controls();
-        Controls.Gameplay.Enable();
         Controls.Gameplay.Shoot.performed += ShootPerformed;
+    }
+
+    public void EnableGameplay()
+    {
+        Controls.Gameplay.Enable();
+    }
+
+    public void DisableGameplay()
+    {
+        Controls.Gameplay.Disable();
     }
 
     private void ShootPerformed(InputAction.CallbackContext context)
