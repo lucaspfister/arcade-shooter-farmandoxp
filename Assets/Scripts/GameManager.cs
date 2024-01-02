@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public UIManager UIManager;
+    public CannonController CannonController;
 
     public InputManager InputManager { get; private set; }
     public StateMachine StateMachine { get; private set; }
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StateMachine.TransitionTo<GameplayState>();
+        StateMachine.TransitionTo<MenuState>();
     }
 
     private void Update()

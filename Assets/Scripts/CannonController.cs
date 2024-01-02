@@ -37,6 +37,11 @@ public class CannonController : MonoBehaviour
         }
     }
 
+    public void ResetRotation()
+    {
+        Pivot.localRotation = Quaternion.identity;
+    }
+
     private void Rotate()
     {
         Vector2 movement = GameManager.Instance.InputManager.Movement;

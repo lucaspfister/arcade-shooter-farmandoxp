@@ -15,6 +15,7 @@ public class GameplayState : BaseState
         TimeRemaining = TIME_DURATION;
 
         GameManager.ResetScore();
+        GameManager.CannonController.ResetRotation();
 
         GameManager.UIManager.GameplayUI.Enable();
         GameManager.UIManager.GameplayUI.SetTimer(TimeRemaining);
