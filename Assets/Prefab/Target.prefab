@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 6227798845266184026}
   AnimMaxDelay: 0.5
+  HitScore: 100
 --- !u!54 &6918086250364678981
 Rigidbody:
   m_ObjectHideFlags: 0

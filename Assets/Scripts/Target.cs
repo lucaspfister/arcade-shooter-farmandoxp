@@ -6,6 +6,7 @@ public class Target : MonoBehaviour
 {
     [SerializeField] private Animator Animator;
     [SerializeField] private float AnimMaxDelay;
+    [SerializeField] private int HitScore;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class Target : MonoBehaviour
         if (currentState.IsName("idle"))
         {
             Animator.SetTrigger("hit");
+            GameManager.Instance.AddScore(HitScore);
         }
     }
 }

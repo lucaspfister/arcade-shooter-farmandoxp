@@ -6,7 +6,7 @@ public class GameplayState : BaseState
 {
     private float TimeRemaining;
 
-    private const float TIME_DURATION = 10;
+    private const float TIME_DURATION = 6;
 
     public override void OnStart(GameManager gameManager)
     {
@@ -14,9 +14,13 @@ public class GameplayState : BaseState
 
         TimeRemaining = TIME_DURATION;
 
-        //TODO display gameplay UI
+        GameManager.ResetScore();
+
+        GameManager.UIManager.GameplayUI.Enable();
+        GameManager.UIManager.GameplayUI.SetTimer(TimeRemaining);
+        GameManager.UIManager.GameplayUI.SetScore(0);
+
         GameManager.InputManager.EnableGameplay();
-        Debug.Log("OnStart GameplayState");
     }
 
     public override void OnTick()
@@ -24,23 +28,20 @@ public class GameplayState : BaseState
         base.OnTick();
 
         TimeRemaining -= Time.deltaTime;
-        //TODO set UI timer
+        GameManager.UIManager.GameplayUI.SetTimer(TimeRemaining);
+        GameManager.UIManager.GameplayUI.SetScore(GameManager.Score);
 
         if (TimeRemaining <= 0)
         {
             GameManager.StateMachine.TransitionTo<EndGameState>();
         }
-
-        Debug.Log(TimeRemaining);
     }
 
     public override void OnEnd()
     {
         base.OnEnd();
 
-        //TODO hide gameplay UI
+        GameManager.UIManager.GameplayUI.Disable();
         GameManager.InputManager.DisableGameplay();
-
-        Debug.Log("OnEnd GameplayState");
     }
 }
