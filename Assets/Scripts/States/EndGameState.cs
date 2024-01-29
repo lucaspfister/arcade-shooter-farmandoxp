@@ -8,7 +8,7 @@ public class EndGameState : BaseState
     {
         base.OnStart(gameManager);
 
-        GameManager.UIManager.EndGameUI.Enable(GameManager.Score);
+        GameManager.UIManager.EndGameUI.Enable(GameManager.ScoreManager.Score);
     }
 
     public override void OnEnd()

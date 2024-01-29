@@ -10,14 +10,14 @@ public class GameManager : MonoBehaviour
     public CannonController CannonController;
 
     public InputManager InputManager { get; private set; }
+    public ScoreManager ScoreManager { get; private set; }
     public StateMachine StateMachine { get; private set; }
-
-    public int Score { get; private set; } = 0;
 
     private void Awake()
     {
         Instance = this;
         InputManager = new();
+        ScoreManager = new();
         StateMachine = new(this);
     }
 
@@ -29,15 +29,5 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         StateMachine.OnTick();
-    }
-
-    public void ResetScore()
-    {
-        Score = 0;
-    }
-
-    public void AddScore(int value)
-    {
-        Score += value;
     }
 }

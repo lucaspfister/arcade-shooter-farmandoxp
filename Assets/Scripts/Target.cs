@@ -29,7 +29,7 @@ public class Target : MonoBehaviour
         if (currentState.IsName("idle"))
         {
             Animator.SetTrigger("hit");
-            GameManager.Instance.AddScore(HitScore);
+            GameManager.Instance.ScoreManager.AddScore(HitScore);
         }
     }
 }

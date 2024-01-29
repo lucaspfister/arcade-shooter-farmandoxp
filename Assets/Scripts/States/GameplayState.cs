@@ -14,7 +14,7 @@ public class GameplayState : BaseState
 
         TimeRemaining = TIME_DURATION;
 
-        GameManager.ResetScore();
+        GameManager.ScoreManager.ResetScore();
         GameManager.CannonController.ResetRotation();
 
         GameManager.UIManager.GameplayUI.Enable();
@@ -30,7 +30,7 @@ public class GameplayState : BaseState
 
         TimeRemaining -= Time.deltaTime;
         GameManager.UIManager.GameplayUI.SetTimer(TimeRemaining);
-        GameManager.UIManager.GameplayUI.SetScore(GameManager.Score);
+        GameManager.UIManager.GameplayUI.SetScore(GameManager.ScoreManager.Score);
 
         if (TimeRemaining <= 0)
         {
@@ -42,6 +42,7 @@ public class GameplayState : BaseState
     {
         base.OnEnd();
 
+        GameManager.ScoreManager.UpdateScoreboard();
         GameManager.UIManager.GameplayUI.Disable();
         GameManager.InputManager.DisableGameplay();
     }
