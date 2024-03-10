@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public UIManager UIManager;
+    public AudioManager AudioManager;
     public CannonController CannonController;
 
     public InputManager InputManager { get; private set; }

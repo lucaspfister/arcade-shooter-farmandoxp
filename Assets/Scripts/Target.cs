@@ -7,6 +7,7 @@ public class Target : MonoBehaviour
     [SerializeField] private Animator Animator;
     [SerializeField] private float AnimMaxDelay;
     [SerializeField] private int HitScore;
+    [SerializeField] private AudioSource AudioSource;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class Target : MonoBehaviour
 
         if (currentState.IsName("idle"))
         {
+            AudioSource.Play();
             Animator.SetTrigger("hit");
             GameManager.Instance.ScoreManager.AddScore(HitScore);
         }

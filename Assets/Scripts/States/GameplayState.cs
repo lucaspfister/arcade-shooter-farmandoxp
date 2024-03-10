@@ -6,7 +6,7 @@ public class GameplayState : BaseState
 {
     private float TimeRemaining;
 
-    private const float TIME_DURATION = 6;
+    private const float TIME_DURATION = 15;
 
     public override void OnStart(GameManager gameManager)
     {

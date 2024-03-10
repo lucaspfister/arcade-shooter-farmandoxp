@@ -29,16 +29,20 @@ public class EndGameUI : BaseUI
 
     private void OnButtonMenuClicked()
     {
+        PlayButtonClickSFX();
         GameManager.Instance.StateMachine.TransitionTo<MenuState>();
     }
 
     private void OnButtonRestartClicked()
     {
+        PlayButtonClickSFX();
         GameManager.Instance.StateMachine.TransitionTo<GameplayState>();
     }
 
     private void OnButtonQuitClicked()
     {
+        PlayButtonClickSFX();
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

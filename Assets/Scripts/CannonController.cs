@@ -57,6 +57,7 @@ public class CannonController : MonoBehaviour
         CannonBall cannonBall = Pool.Rent();
         cannonBall.transform.SetPositionAndRotation(ShotOrigin.position, Quaternion.identity);
         cannonBall.Shoot(ShootForce * ShotOrigin.forward, CannonBallCallback);
+        GameManager.Instance.AudioManager.PlaySFX(SFX.Shot);
 
         IsCoolingDown = true;
         Cooldown = CooldownDuration;

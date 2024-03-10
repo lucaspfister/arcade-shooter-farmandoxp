@@ -21,4 +21,9 @@ public class BaseUI : MonoBehaviour
     {
         Canvas.enabled = false;
     }
+
+    protected void PlayButtonClickSFX()
+    {
+        GameManager.Instance.AudioManager.PlaySFX(SFX.ButtonClick);
+    }
 }

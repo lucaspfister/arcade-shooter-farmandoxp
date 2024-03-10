@@ -33,11 +33,14 @@ public class MenuUI : BaseUI
 
     private void OnButtonPlayClicked()
     {
+        PlayButtonClickSFX();
         GameManager.Instance.StateMachine.TransitionTo<GameplayState>();
     }
 
     private void OnButtonQuitClicked()
     {
+        PlayButtonClickSFX();
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

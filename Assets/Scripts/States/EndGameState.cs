@@ -8,6 +8,7 @@ public class EndGameState : BaseState
     {
         base.OnStart(gameManager);
 
+        GameManager.AudioManager.PlaySFX(SFX.EndGame);
         GameManager.UIManager.EndGameUI.Enable(GameManager.ScoreManager.Score);
     }
 
